@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Мінімальний лічильник</title>
+  </head>
+  <body>
+    <h1>Поточне значення: <span id="counter-display">...</span></h1>
+    <button id="click-button">Додати +1</button>
+    <button id="reset">Спочатку</button>
+
+    <!-- Підключення бібліотек Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyCYA1jhBcKUmh2fWOy5CqAbKG1QXkFsAjI",
+        authDomain: "my-click-counter-1fe4f.firebaseapp.com",
+        databaseURL:
+          "https://my-click-counter-1fe4f-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "my-click-counter-1fe4f",
+        storageBucket: "my-click-counter-1fe4f.firebasestorage.app",
+        messagingSenderId: "544124700834",
+        appId: "1:544124700834:web:463e2069483b2bf031effb",
+      };
+
+      // 2. ІНІЦІАЛІЗАЦІЯ ТА ОТРИМАННЯ ДОСТУПУ ДО БАЗИ
+      firebase.initializeApp(firebaseConfig);
+      const counterRef = firebase.database().ref("counterValue");
+
+      // 3. ПІДПИСКА НА ОНОВЛЕННЯ З СЕРВЕРА
+      // Коли дані на сервері в 'counterValue' зміняться, ця функція виконається
+      counterRef.on("value", (snapshot) => {
+        document.getElementById("counter-display").innerText =
+          snapshot.val() || 0;
+      });
+
+      // 4. ВІДПРАВКА КОМАНДИ НА СЕРВЕР ПРИ КЛІЦІ
+      document.getElementById("click-button").onclick = () => {
+        // Запускаємо транзакцію для безпечного оновлення
+        counterRef.transaction((currentValue) => {
+          // Ця функція виконується на сервері Firebase
+          return (currentValue || 0) + 1;
+        });
+      };
+      // 5. ОБНУЛЕННЯ ЛІЧИЛЬНИКА
+      document.getElementById("reset").onclick = () => {
+        counterRef.set(0);
+      };
+    </script>
+  </body>
+</html>
