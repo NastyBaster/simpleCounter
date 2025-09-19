@@ -60,9 +60,13 @@
     </style>
   </head>
   <body>
-    <h1>Поточне значення: <span id="counter-display">...</span></h1>
-    <button id="click-button">Додати +1</button>
-    <button id="reset">Спочатку</button>
+    <div class="counter-container">
+      <span id="counter-display">...</span>
+      <div class="buttons-row">
+        <button id="plus-button" class="counter-btn plus">+1</button>
+        <button id="minus-button" class="counter-btn minus">-1</button>
+      </div>
+    </div>
 
     <!-- Підключення бібліотек Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
