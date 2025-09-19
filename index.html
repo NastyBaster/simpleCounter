@@ -3,6 +3,61 @@
   <head>
     <meta charset="UTF-8" />
     <title>Мінімальний лічильник</title>
+    <style>
+      body {
+        background: #26a3ea;
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .counter-container {
+        background: #fff;
+        border: 6px solid #243447;
+        border-radius: 24px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        padding: 32px 28px 18px 28px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 240px;
+      }
+      #counter-display {
+        font-size: 70px;
+        font-weight: bold;
+        color: #243447;
+        margin: 16px 0 22px 0;
+        display: block;
+        text-align: center;
+      }
+      .buttons-row {
+        display: flex;
+        gap: 18px;
+        width: 100%;
+        justify-content: center;
+      }
+      .counter-btn {
+        flex: 1 1 0;
+        font-size: 32px;
+        font-weight: bold;
+        color: #fff;
+        border: none;
+        border-radius: 14px;
+        padding: 18px 0;
+        cursor: pointer;
+        transition: filter 0.1s;
+      }
+      .counter-btn.plus {
+        background: #3dbf56;
+      }
+      .counter-btn.minus {
+        background: #e74c3c;
+      }
+      .counter-btn:active {
+        filter: brightness(0.9);
+      }
+    </style>
   </head>
   <body>
     <h1>Поточне значення: <span id="counter-display">...</span></h1>
@@ -51,3 +106,4 @@
     </script>
   </body>
 </html>
+
