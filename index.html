@@ -99,6 +99,7 @@
       // 2. ІНІЦІАЛІЗАЦІЯ ТА ОТРИМАННЯ ДОСТУПУ ДО БАЗИ
       firebase.initializeApp(firebaseConfig);
       const counterRef = firebase.database().ref("counterValue");
+      const numberNum = firebase.database().ref("numberNum");
 
       // 3. ПІДПИСКА НА ОНОВЛЕННЯ З СЕРВЕРА
       // Коли дані на сервері в 'counterValue' зміняться, ця функція виконається
