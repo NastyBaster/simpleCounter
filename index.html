@@ -79,6 +79,10 @@
       <button id="reset" class="counter-btn reset full-width">reset</button>
 
       </div>
+            </div>
+      <button id="number-plus" class="counter-btn reset full-width">n plus</button>
+
+      </div>
     </div>
 
     <!-- Підключення бібліотек Firebase SDK -->
@@ -100,7 +104,7 @@
       // 2. ІНІЦІАЛІЗАЦІЯ ТА ОТРИМАННЯ ДОСТУПУ ДО БАЗИ
       firebase.initializeApp(firebaseConfig);
       const counterRef = firebase.database().ref("counterValue");
-      const numberNum = firebase.database().ref("numberNum");
+      const numberNum = firebase.database().ref("numberValue");
 
       // 3. ПІДПИСКА НА ОНОВЛЕННЯ З СЕРВЕРА
       // Коли дані на сервері в 'counterValue' зміняться, ця функція виконається
@@ -121,11 +125,12 @@
           return (currentValue || 0) + 1;
         });
       };
-           document.getElementById("minus-button").onclick = () => {
+    
+      document.getElementById("number-plus").onclick = () => {
         // Запускаємо транзакцію для безпечного оновлення
-        counterRef.transaction((currentValue) => {
+        numberNum.transaction((currentValue) => {
           // Ця функція виконується на сервері Firebase
-          return (currentValue || 0) - 1;
+          return (currentValue || 0) + 1;
         });
       };
       // 5. ОБНУЛЕННЯ ЛІЧИЛЬНИКА
