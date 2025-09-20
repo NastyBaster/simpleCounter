@@ -125,6 +125,14 @@
           return (currentValue || 0) + 1;
         });
       };
+            // 4. ВІДПРАВКА КОМАНДИ НА СЕРВЕР ПРИ КЛІЦІ
+      document.getElementById("minus-button").onclick = () => {
+        // Запускаємо транзакцію для безпечного оновлення
+        counterRef.transaction((currentValue) => {
+          // Ця функція виконується на сервері Firebase
+          return (currentValue || 0) - 1;
+        });
+      };
     
       document.getElementById("number-plus").onclick = () => {
         // Запускаємо транзакцію для безпечного оновлення
